@@ -10,11 +10,11 @@ namespace ADOPM3_01_14
     {
         static void Main(string[] args)
         {
-            var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            string startPath = Path.Combine(documentPath, "ADOP", "Examples");
-            string zipFile = Path.Combine(documentPath, "ADOP", "Examples.zip");
-            string extractPath = Path.Combine(documentPath, "ADOP", "Extract");
+            string startPath = Path.Combine(documentPath, "SeedGenerator");
+            string zipFile = Path.Combine(documentPath, "SeedGenerator.zip");
+            string extractPath = Path.Combine(documentPath, "ExtractSeedGenerator");
 
             if (File.Exists(zipFile)) File.Delete(zipFile);
             ZipFile.CreateFromDirectory(startPath, zipFile);
@@ -24,7 +24,7 @@ namespace ADOPM3_01_14
             ZipFile.ExtractToDirectory(zipFile, extractPath);
             Console.WriteLine($"Zip Extracted: {extractPath}");
 
-            OpenFileExplorer(startPath);
+            //OpenFileExplorer(startPath);
 
             //ZipArchive
             Console.WriteLine();

@@ -10,43 +10,47 @@ namespace ADOPM3_01_10
     {
         static void Main(string[] args)
         {
+			
 			var t2 = new Stopwatch();
 			t2.Start();
 
+			//var sbBook = ""; //
 			var sbBook = new StringBuilder();
-			for (int i = 0; i < 100_000; i++)
+			for (int i = 0; i < 1_000_000; i++)
 			{
-				sbBook.Append("Hej hopp! ");
+                //sbBook += "Hej hopp! ";
+                sbBook.Append("Hej hopp! ");
 			}
 
 			Console.WriteLine(sbBook.Length);
 
 			t2.Stop();
-			Console.WriteLine(t2.ElapsedMilliseconds);
+			Console.WriteLine($"{ t2.ElapsedMilliseconds} ms");
+			
 
-
-			/*
-			string filename = fname("Example4_10.txt");
+			
+			string filename = fname("BestSeller.txt");
 
 			using (FileStream fs = File.Create(filename))
 			using (TextWriter writer = new StreamWriter(fs))
 			{
 				writer.WriteLine(filename);
-				writer.WriteLine("Hello World");
-				writer.WriteLine(int.MaxValue.ToString());
-				writer.WriteLine(double.MaxValue.ToString());
+				writer.WriteLine(sbBook);
 			}
 
-
+			/*
 			using (FileStream fs = File.OpenRead(fname("Example4_10.txt")))
 			using (TextReader reader = new StreamReader(fs))
 			{
-				Console.WriteLine(reader.ReadLine());       
-				Console.WriteLine(reader.ReadLine());       
-				Console.WriteLine(reader.ReadLine());       
-				Console.WriteLine(reader.ReadLine());       
+
+				string s = null;
+                while ((s = reader.ReadLine()) != null)
+				{
+                    Console.WriteLine(s);
+                }
 			}
 			*/
+			
 
 			static string fname(string name)
 			{

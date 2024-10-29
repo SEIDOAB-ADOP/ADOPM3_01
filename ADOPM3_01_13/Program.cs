@@ -26,7 +26,7 @@ namespace ADOPM3_01_13
             Console.WriteLine(new FileInfo(fname("Example4_13_uncompressed.text")).Length);
             
             using (Stream s = File.Create(fname("Example4_13_compressed.zip")))
-            using (Stream ds = new BrotliStream(s, CompressionMode.Compress))
+            using (Stream ds = new GZipStream(s, CompressionMode.Compress))
             using (TextWriter w = new StreamWriter(ds))
                 w.Write(sb);
 
@@ -34,7 +34,7 @@ namespace ADOPM3_01_13
 
             
             using (Stream s = File.OpenRead(fname("Example4_13_compressed.zip")))
-            using (Stream ds = new BrotliStream(s, CompressionMode.Decompress))
+            using (Stream ds = new GZipStream(s, CompressionMode.Decompress))
             using (TextReader r = new StreamReader(ds))
             {
                 var sReadback = r.ReadToEnd();

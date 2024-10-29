@@ -74,8 +74,10 @@ namespace ADOPM3_01_08
 			{
 				//LocalApplicationData is a good place to store a temporary file
 				var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-				documentPath = Path.Combine(documentPath, "ADOP", "Examples");
+				documentPath = Path.Combine(documentPath, "Martin", "M3");
+
 				if (!Directory.Exists(documentPath)) Directory.CreateDirectory(documentPath);
+
 				return Path.Combine(documentPath, name);
 			}
 		}
