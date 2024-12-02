@@ -21,6 +21,7 @@ namespace ADOPM3_01_04
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            throw new MyOwnException("My Own Exception", new DatabaseObject(){ someDatabaseDetails = "Other info"});
         }
     }
     //Exercises:
