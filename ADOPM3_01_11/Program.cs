@@ -14,23 +14,23 @@ namespace ADOPM3_01_11
 
             using (Stream s = File.OpenRead(fname("Example4_11_1.txt")))
                 for (int b; (b = s.ReadByte()) > -1;)
-                    Console.WriteLine(b);
+                    Console.Write($"{b} ");
 
-            Console.WriteLine("Unicode a.k.a. UTF-16 encoding");
+            Console.WriteLine("\n\nUnicode a.k.a. UTF-16 encoding");
             using (Stream s = File.Create(fname("Example4_11_2.txt")))
             using (TextWriter w = new StreamWriter(s, Encoding.Unicode))
                 w.WriteLine($"Hello world");
 
             foreach (byte b in File.ReadAllBytes(fname("Example4_11_2.txt")))
-                Console.WriteLine(b);
+                Console.Write($"{b} ");
 
-            Console.WriteLine("Unicode a.k.a. UTF-32 encoding");
+            Console.WriteLine("\n\nUnicode a.k.a. UTF-32 encoding");
             using (Stream s = File.Create(fname("Example4_11_3.txt")))
             using (TextWriter w = new StreamWriter(s, new UTF32Encoding()))
                 w.WriteLine($"Hello world");
 
             foreach (byte b in File.ReadAllBytes(fname("Example4_11_3.txt")))
-                Console.WriteLine(b);
+                Console.Write($"{b} ");
 
             static string fname(string name)
             {

@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ADOPM3_01_07
 {
     class Program
     {
-        static void Main(string[] args)
+		// HttpClient is intended to be instantiated once and reused throughout the life of an application
+		private static readonly HttpClient httpClient = new HttpClient();
+
+        static async Task Main(string[] args)
         {
 			string s = null;
 
-			//Using statement with some Exception handling
-			using (WebClient wc = new WebClient())
+			//Using HttpClient (reusable static instance) with some Exception handling
+			try 
+			{ 
+				s = await httpClient.GetStringAsync("https://www.microsoft.com/"); 
+			}
+			catch (HttpRequestException ex)
 			{
-				try { s = wc.DownloadString("http://www.microsoft.com/"); }
-				catch (WebException ex)
-				{
-					if (ex.Status == WebExceptionStatus.NameResolutionFailure)
-						Console.WriteLine("Bad domain name");
-					else
-						throw;     // Can’t handle other sorts of WebException, so rethrow
-				}
+				if (ex.InnerException is System.Net.Sockets.SocketException socketEx && 
+				    socketEx.SocketErrorCode == System.Net.Sockets.SocketError.HostNotFound)
+					Console.WriteLine("Bad domain name");
+				else
+					throw;     // Can't handle other sorts of HttpRequestException, so rethrow
 			}
 
 			//s now contains the html markup from the website
@@ -49,7 +55,7 @@ namespace ADOPM3_01_07
 	}
 
 	//Exercise:
-	//1.	Change the domain name in order to generate different Web Exceptions (www.microsoft1.com and www.m.com. 
+	//1.	Change the domain name in order to generate different Http Exceptions (www.microsoft1.com and www.m.com). 
 	//		Explain what happens
 	//2.	Try to delete the file File.Delete() in the if statement. Explain what happens and why
 }

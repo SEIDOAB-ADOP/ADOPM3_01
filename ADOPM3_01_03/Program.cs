@@ -23,7 +23,7 @@ namespace ADOPM3_01_03
         {
             // Input for test purposes. Change the values to see
             // exception handling behavior.
-            double a = 10, b = 0;
+            double a = 0, b = 0;
             double result;
 
             try
@@ -36,7 +36,7 @@ namespace ADOPM3_01_03
             {
                 Console.WriteLine("Attempted divide by zero.");
                 Console.WriteLine($"Message: {ex.Message}");
-                //throw; // test rethrow same exception
+                throw; // test rethrow same exception
             }
             catch (DivideByZeroException)
             {

@@ -9,7 +9,7 @@ namespace ADOPM3_01_13
     {
         static void Main(string[] args)
         {
-            string[] words = "quick brown fox jumps over the lazy dog and catches the lazy white rabbit .".Split();
+            string[] words = "quick brown fox jumps over the lazy dog and catches the lazy white rabbit .".Split(" ");
             Random rand = new Random();
 
             StringBuilder sb = new StringBuilder();
