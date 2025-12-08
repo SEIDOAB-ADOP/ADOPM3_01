@@ -21,7 +21,15 @@ namespace ADOPM3_01_04
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            throw new MyOwnException("My Own Exception", new DatabaseObject(){ someDatabaseDetails = "Other info"});
+            try
+            {
+                throw new MyOwnException("My Own Exception", new DatabaseObject(){ someDatabaseDetails = "Other info"});
+            }
+            catch (MyOwnException ex)
+            {
+                Console.WriteLine($"Caught MyOwnException: {ex.Message}");
+                Console.WriteLine($"Database Details: {ex.DBO.someDatabaseDetails}");
+            }
         }
     }
     //Exercises:
